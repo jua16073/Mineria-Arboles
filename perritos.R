@@ -1,0 +1,6 @@
+setwd("D:/mineria/hoja3/")
+entrenamiento = read.csv("train.csv") 
+prueba = read.csv("test.csv")
+entrenamiento1 <- data.frame(entrenamiento)
+prueba1 <- data.frame(prueba)
+total <- merge(entrenamiento1, prueba1, all = TRUE)
