@@ -1,4 +1,4 @@
-setwd("Documents/Mineria/Mineria Arboles/")
+setwd("D:/mineria/hoja3/Mineria-Arboles/")
 getwd()
 
 entrenamiento = read.csv("train.csv") 
@@ -25,13 +25,14 @@ test <- entrenamiento1[-trainRowsNumber, ]
 
 head(entrenamiento1, n = 1)
 
-#Breed1
-#Type
-#MaturitySize
-#FurLength
-#Color1
-#Dewormed+Vaccinated+Fee+State
-dt_model <- rpart(AdoptionSpeed~Age+Color1, train, method="Class")
-plot(dt_model);text(dt_model)
-prp(dt_model)
-rpart.plot(dt_model)
+# Con Random Forest
+modeloRF1<-randomForest(AdoptionSpeed~State+Breed1+Age+Dewormed+Color1+Health,data=train)
+prediccionRF1<-predict(modeloRF1,newdata = test[c("State","Breed1","Age","Vaccinated","Dewormed","Color1","Health")])
+testCompleto<-test
+testCompleto$predRF<-prediccionRF1
+testCompleto$predRF
+testCompleto$predRF <- as.factor(round(testCompleto$predRF, 0))
+testCompleto$AdoptionSpeed <- as.factor(round(testCompleto$AdoptionSpeed, 0))
+cfmRandomForest <- confusionMatrix(testCompleto$predRF, testCompleto$AdoptionSpeed)
+cfmRandomForest
+

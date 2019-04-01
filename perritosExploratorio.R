@@ -7,8 +7,8 @@ library(factoextra) #Para hacer gráficos bonitos de clustering
 library(ggplot2)
 library(dplyr)
 library(fitdistrplus)
-
-setwd("D:/mineria/hoja3/")
+library(rpart)
+setwd("D:/mineria/hoja3/Mineria-Arboles/")
 entrenamiento = read.csv("train.csv") 
 prueba = read.csv("test.csv")
 entrenamiento1 <- data.frame(entrenamiento)
@@ -154,3 +154,68 @@ hist(entrenamiento$PhotoAmt, breaks = 50)
 axis(1, at=seq(0 , 1000, by=100))
 cor(entrenamiento$Age, entrenamiento$PhotoAmt, method = c("spearman"))
 cor(entrenamiento$Quantity, entrenamiento$PhotoAmt, method = c("spearman"))
+
+#relacion entre velocidad y vacunacion
+VelocidadVacunacion <- data.frame(total$AdoptionSpeed, total$Vaccinated)
+tablaVV <- table(VelocidadVacunacion)
+tablaVV
+
+#velocidad entre velocidad y desparasitado
+VelocidadParasito <- data.frame(total$AdoptionSpeed, total$Dewormed)
+tablaVP <- table(VelocidadParasito)
+tablaVP
+
+#relacion entre velocidad y esterilizacion 
+velocidadEsteril <- data.frame(total$AdoptionSpeed, total$Sterilized)
+tablaVE <- table(velocidadEsteril)
+tablaVE
+
+#velocidad y edad
+velocidadEdad <- data.frame(total$AdoptionSpeed, total$Age)
+tableVedad <- table(velocidadEdad)
+tableVedad
+
+#velocidad y fee
+velocidadFee <- data.frame(total$AdoptionSpeed, total$Fee)
+tablaVF <- table(velocidadFee)
+tablaVF
+
+#velocidad y raza
+velocidadRaza <- data.frame(total$AdoptionSpeed, total$Breed1)
+tablaVR <- table(velocidadRaza)
+tablaVR
+
+#velocidad y tipo
+velocidadTipo <- data.frame(total$AdoptionSpeed, total$Type)
+tablaVT <- table(velocidadTipo)
+tablaVT
+
+#velocidad y tamanio de animal
+velocidadTamanio <- data.frame(total$AdoptionSpeed, total$MaturitySize)
+tablaVTam <- table(velocidadTamanio)
+tablaVTam
+
+#velocidad y genero
+velocidadGenero <- data.frame(total$AdoptionSpeed, total$Gender)
+tablaVG <- table(velocidadGenero)
+tablaVG
+
+#velocidad y largo de pelo
+velocidadFur <- data.frame(total$AdoptionSpeed, total$FurLength)
+tablaVFu <- table(velocidadFur)
+tablaVFu
+
+#velocidad de adopcion y color principal
+velocidadColor <- data.frame(total$AdoptionSpeed, total$Color1)
+tablaVC <- table(velocidadColor)
+tablaVC
+
+#velocidad de adopcion y estado donde fue realizada
+velocidadEStado <- data.frame(total$AdoptionSpeed, total$State)
+tablaVEstado <- table(velocidadEStado)
+tablaVEstado
+
+#velocidad y numero de fotos
+velocidadFoto <- data.frame(total$AdoptionSpeed, total$PhotoAmt)
+tablaVFoto <- table(velocidadFoto)
+tablaVFoto
